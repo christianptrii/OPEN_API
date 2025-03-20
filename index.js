@@ -49,22 +49,6 @@ app.get('/users/:id', (req, res) => {
 });
 
 
-app.put('/users/:id', (req, res) => {
-    const id = req.params.id;
-    const name = req.query.name;
-    const email = req.query.email;
-    const age = req.query.age;
-    db.query('UPDATE users SET name = ?, email = ?, age = ? WHERE id = ?', [name, email, age, id], (err, results) => {
-        if (err) {
-            res.status(500).send('Internal Server Error');
-            return;
-        }
-
-        res.json(results);
-    });
-});
-
-
 app.delete('/users/:id', (req, res) => {
     const id = req.params.id;
     db.query('DELETE FROM users WHERE id = ?', [id], (err, results) => {
